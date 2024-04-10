@@ -13,14 +13,17 @@ class ReservationsController < ApplicationController
     if @reservation.save
       redirect_to movie_path(params[:reservation][:movie_id]), notice: "予約が完了しました。"
     else
-      redirect_to reservation_movie_path(params[:reservation][:movie_id], schedule_id: reservation_params[:schedule_id], date: reservation_params[:date]), notice: "その座席はすでに予約済みです"
+      redirect_to reservation_movie_path(params[:reservation][:movie_id],
+                                         schedule_id: reservation_params[:schedule_id],
+                                         date: reservation_params[:date]),
+                  notice: "その座席はすでに予約済みです"
     end
   end
 
-
   private
-    # Only allow a list of trusted parameters through.
-    def reservation_params
-      params.require(:reservation).permit(:schedule_id, :sheet_id, :name, :email, :date)
-    end
+
+  # Only allow a list of trusted parameters through.
+  def reservation_params
+    params.require(:reservation).permit(:schedule_id, :sheet_id, :name, :email, :date)
+  end
 end

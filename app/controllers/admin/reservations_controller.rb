@@ -1,15 +1,14 @@
 class Admin::ReservationsController < ApplicationController
   layout "admin"
-  before_action :set_reservation, only: %i[ show edit update destroy ]
+  before_action :set_reservation, only: %i[show edit update destroy]
 
   # GET /admin/reservations or /admin/reservations.json
   def index
-    @reservations = Reservation.joins({schedule: :movie}).where(movie: {is_showing: true})
+    @reservations = Reservation.joins({ schedule: :movie }).where(movie: { is_showing: true })
   end
 
   # GET /admin/reservations/1 or /admin/reservations/1.json
-  def show
-  end
+  def show; end
 
   # GET /admin/reservations/new
   def new
@@ -17,19 +16,18 @@ class Admin::ReservationsController < ApplicationController
   end
 
   # GET /admin/reservations/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /admin/reservations or /admin/reservations.json
   def create
     @reservation = Reservation.new(reservation_params)
 
     if @reservation.save
-      redirect_to admin_reservations_url, notice: "作成しました。" 
+      redirect_to admin_reservations_url, notice: "作成しました。"
     else
       render :new, status: :bad_request, notice: "作成に失敗しました。"
     end
-end
+  end
 
   # PATCH/PUT /admin/reservations/1 or /admin/reservations/1.json
   def update
@@ -38,7 +36,7 @@ end
     else
       render :edit, status: :unprocessable_entity
     end
-end
+  end
 
   # DELETE /admin/reservations/1 or /admin/reservations/1.json
   def destroy
@@ -50,13 +48,14 @@ end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reservation
-      @reservation = Reservation.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def reservation_params
-      params.require(:reservation).permit(:schedule_id, :sheet_id, :name, :email, :date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_reservation
+    @reservation = Reservation.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def reservation_params
+    params.require(:reservation).permit(:schedule_id, :sheet_id, :name, :email, :date)
+  end
 end

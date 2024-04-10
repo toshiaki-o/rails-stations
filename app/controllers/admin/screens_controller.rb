@@ -1,10 +1,10 @@
 class Admin::ScreensController < ApplicationController
   layout "admin"
-  before_action :set_admin_screen, only: %i[ edit update destroy ]
+  before_action :set_admin_screen, only: %i[edit update destroy]
 
   # GET /admin/screens or /admin/screens.json
   def index
-    @screens = Screen.all.order(:date, :name)
+    @screens = Screen.order(:date, :name)
   end
 
   # GET /admin/screens/new
@@ -13,8 +13,7 @@ class Admin::ScreensController < ApplicationController
   end
 
   # GET /admin/screens/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /admin/screens or /admin/screens.json
   def create
@@ -42,13 +41,14 @@ class Admin::ScreensController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin_screen
-      @screen = Screen.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def admin_screen_params
-      params.require(:screen).permit(:schedule_id, :name, :date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_admin_screen
+    @screen = Screen.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def admin_screen_params
+    params.require(:screen).permit(:schedule_id, :name, :date)
+  end
 end
