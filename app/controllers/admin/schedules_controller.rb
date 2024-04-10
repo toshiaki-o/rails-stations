@@ -1,6 +1,6 @@
 class Admin::SchedulesController < ApplicationController
   layout "admin"
-  before_action :set_admin_schedule, only: %i[show edit update destroy ]
+  before_action :set_admin_schedule, only: %i[show edit update destroy]
 
   # GET /admin/schedules or /admin/schedules.json
   def index
@@ -8,8 +8,7 @@ class Admin::SchedulesController < ApplicationController
   end
 
   # GET /admin/schedules/1 or /admin/schedules/1.json
-  def show
-  end
+  def show; end
 
   # GET /admin/schedules/new
   def new
@@ -17,8 +16,7 @@ class Admin::SchedulesController < ApplicationController
   end
 
   # GET /admin/schedules/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /admin/schedules or /admin/schedules.json
   def create
@@ -47,13 +45,14 @@ class Admin::SchedulesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin_schedule
-      @schedule = Schedule.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def admin_schedule_params
-      params.require(:schedule).permit(:movie_id, :start_time, :end_time)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_admin_schedule
+    @schedule = Schedule.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def admin_schedule_params
+    params.require(:schedule).permit(:movie_id, :start_time, :end_time)
+  end
 end

@@ -3,9 +3,11 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    @movies = params[:is_showing].blank? ? Movie.all : Movie.where(is_showing: params[:is_showing])  
+    @movies = params[:is_showing].blank? ? Movie.all : Movie.where(is_showing: params[:is_showing])
     if params[:keyword].present?
-      @movies =  @movies.where("name LIKE ?", "%#{params[:keyword]}%").or(@movies.where("description LIKE ?", "%#{params[:keyword]}%"))
+      @movies = @movies.where("name LIKE ?",
+                              "%#{params[:keyword]}%").or(@movies.where("description LIKE ?",
+                                                                        "%#{params[:keyword]}%"))
     end
   end
 
@@ -21,8 +23,9 @@ class MoviesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_movie
-      @movie = Movie.find(params[:id])
-    end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_movie
+    @movie = Movie.find(params[:id])
+  end
 end
