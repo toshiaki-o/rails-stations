@@ -1,0 +1,45 @@
+<%= form_with(model: [:admin, schedule]) do |form| %>
+  <% if schedule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
+
+      <ul>
+        <% schedule.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <div class="row">
+      <div class="col-md-2">
+        <%= form.label :movie_id %>
+      </div>
+      <div class="col-md-8">
+        <%= form.text_field :movie_id, readonly: true %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <%= form.label :start_time %>
+      </div>
+      <div class="col-md-8">
+        <%= form.time_field :start_time %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <%= form.label :end_time %>
+      </div>
+      <div class="col-md-8">
+        <%= form.time_field :end_time %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1 offset-md-2">
+        <%= form.submit '送信', class: "btn btn-primary btn-sm" %>
+      </div>
+    </div>
+  </div>
+<% end %>

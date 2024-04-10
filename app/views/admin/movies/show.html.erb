@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <tbody>
+    <tr>
+      <th>
+        作品名：
+      </th>
+      <td>
+        <%= @movie.name %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        概要：
+      </th>
+      <td>
+        <%= @movie.description %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        公開年：
+      </th>
+      <td>
+        <%= @movie.year %>年
+      </td>
+    </tr>
+    <tr>
+      <th>
+        イメージ:
+      </th>
+      <td>
+        <%= image_tag @movie.image_url %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div>
+  <h4>上映スケジュール</h4>
+</div>
+<div>
+  <% @schedules.each do |schedule| %>
+    <div>
+      <%= link_to (l schedule.start_time, format: :time_only), edit_admin_movie_schedule_path(@movie, schedule) %>
+      ～
+      <%= link_to (l schedule.end_time, format: :time_only), edit_admin_movie_schedule_path(@movie, schedule) %>
+  </div>
+  <% end %>
+</div>
+
+<%= link_to '上映登録', new_admin_movie_schedule_path(@movie) %>

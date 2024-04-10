@@ -1,0 +1,6 @@
+<p id="notice"><%= notice %></p>
+<h1>予約編集</h1>
+
+<%= render 'form', reservation: @reservation %>
+
+<%= link_to '削除', [:admin, @reservation], class: "btn btn-danger btn-sm", method: :delete, data: { confirm: '削除してもよろしいですか?' } %>

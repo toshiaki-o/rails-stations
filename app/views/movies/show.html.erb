@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="row row-cols-2 justify-content-center">
+    <div class="col-md-2">
+      <%= image_tag @movie.image_url %>
+    </div>
+    <div class="col-md-2">
+      <div class="d-flex flex-column">
+        <div class="p-2"><%= @movie.name %></div>
+        <div class="p-2"><%= @movie.year %>年</div>
+        <div class="p-2"><%= @movie.description %></div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="p-2">上映スケジュール</div>
+    <% @schedules.each do |schedule| %>
+      <div class="p-2">
+        <%= l schedule.start_time, format: :time_only %>
+        ～
+        <%= l schedule.end_time, format: :time_only %>
+      </div>
+    <% end %>
+  </div>
+  <%= form_with method: :get, url: reservation_movie_path(@movie) do |form| %>
+    <div class="actions m-3 d-flex justify-content-center">
+      <div class="p-2">
+        <%= form.label '日付' %>
+        <%= form.select :date, select_date_oneweek %>
+      </div>
+      <div class="p-2">
+        <%= form.label '上映スケジュール' %>
+        <%= form.select :schedule_id, @schedules.map {|schedule| ["#{(l schedule.start_time, format: :time_only)}～#{(l schedule.end_time, format: :time_only)}", schedule.id]} %>
+      </div>
+      <div class="p-2">
+        <%= form.button '座席を予約する', class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
