@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>スクリーン情報一覧</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col-2"><h2>ID</h2></th>
+      <th class="col-2"><h2>スクリーン名</h2></th>
+      <th class="col-2"><h2>映画名</h2></th>
+      <th class="col-2"><h2>日付</h2></th>
+      <th class="col-2"><h2>開始時間</h2></th>
+      <th class="col-2"><h2>終了時間</h2></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @screens.each do |screen| %>
+      <tr>
+        <td><%= link_to screen.id, edit_admin_screen_path(screen.id) %></td>
+        <td><%= screen.name %></td>
+        <td><%= screen.schedule.movie.name %></td>
+        <td><%= screen.date %></td>
+        <td><%= l screen.schedule.start_time, format: :time_only %></td>
+        <td><%= l screen.schedule.end_time, format: :time_only %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'スクリーン設定', new_admin_screen_path %>
+

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<h1>映画一覧</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col"><%= Movie.human_attribute_name(:id) %></th>
+      <th class="col"><%= Movie.human_attribute_name(:name) %></th>
+      <th class="col"><%= Movie.human_attribute_name(:year) %></th>
+      <th class="col-2"><%= Movie.human_attribute_name(:description) %></th>
+      <th class="col-2"><%= Movie.human_attribute_name(:image_url) %></th>
+      <th class="col"><%= Movie.human_attribute_name(:is_showing) %></th>
+      <th class="col-2"><%= Movie.human_attribute_name(:created_at) %></th>
+      <th class="col-2"><%= Movie.human_attribute_name(:updated_at) %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td class="col"><%=link_to movie.id, admin_movie_path(movie) %></td>
+        <td class="col"><%= movie.name %></td>
+        <td class="col"><%= movie.year %></td>
+        <td class="col-2"><%= movie.description %></td>
+        <td class="col-2"><%= link_to movie.image_url %></td>
+        <td class="col"><%= movie.is_showing ? '上映中' : '上映予定' %></td>
+        <td class="col-2"><%= movie.created_at %></td>
+        <td class="col-2"><%= movie.updated_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'New Movie', new_admin_movie_path %>

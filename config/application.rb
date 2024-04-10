@@ -11,6 +11,8 @@ module App
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    config.i18n.default_locale = :ja
+
     # for rspec
     # Setting it to false will prevent unnecessary test files from being created.
     config.generators do |g|

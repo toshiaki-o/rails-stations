@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h1>|. |. |スクリーン|. |. |</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="5">|:---:|:---:|:---:|:---:|:---:|</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sheets.each do |sheet| %>
+      <%= "<tr>".html_safe if sheet.column == 1 %>
+        <td><%= "#{sheet.row}-#{sheet.column}" %></td>
+      <%= "</tr>".html_safe if sheet.column == 5 %>
+    <% end %>
+  </tbody>
+</table>

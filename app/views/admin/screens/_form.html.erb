@@ -1,0 +1,29 @@
+<%= form_with(model: [:admin, screen]) do |form| %>
+  <% if screen.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(screen.errors.count, "error") %> prohibited this admin_screen from being saved:</h2>
+
+      <ul>
+        <% screen.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="container actions">
+    <div class="row m-2">
+      <div class="col-2 p-2"><%= form.label :name %></div>
+      <div class="col-10 p-2"><%= form.select :name, Screen.names.keys,required: true %></div>
+    </div>
+    <div class="row m-2">
+      <div class="col-2 p-2"><%= form.label :schedule_id %></div>
+      <div class="col-10 p-2"><%= form.text_field :schedule_id, required: true %></div>
+    </div>
+    <div class="row m-2">
+      <div class="col-2 p-2"><%= form.label :date %></div>
+      <div class="col-10 p-2"><%= form.date_field :date, required: true %></div>
+    </div>
+    <div class="m-2"><%= form.submit '送信', class: "btn btn-primary btn-sm" %></div>
+  </div>
+<% end %>

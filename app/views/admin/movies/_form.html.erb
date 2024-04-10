@@ -1,0 +1,61 @@
+<%= form_with(model: [:admin, movie]) do |form| %>
+  <% if movie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t("errors.template.header", model: movie.model_name.human, count: movie.errors.count) %></h2>
+
+      <ul>
+        <% movie.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <%= form.label :name %>
+      </div>
+      <div class="col-8">
+        <%= form.text_field :name %>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <%= form.label :year %>
+      </div>
+      <div class="col-8">
+        <%= form.text_field :year %>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <%= form.label :description %>
+      </div>
+      <div class="col-8">
+        <%= form.text_area :description %>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <%= form.label :image_url %>
+      </div>
+      <div class="col-8">
+        <%= form.text_field :image_url %>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <%= form.label :is_showing %>
+      </div>
+      <div class="col-8">
+        <%= form.select :is_showing, [['上映予定', false],['上映中', true]], selected: movie.is_showing %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1 offset-md-2">
+        <%= form.submit '送信', class: "btn btn-primary btn-sm" %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+<div class="container text-center">
+  <h1 class="text-bg-secondary p-3">座席の選択</h1>
+  <h5 class="text-bg-secondary p-3">選択中の映画</h5>
+  <div class="p-3"><%= @movie.name %></div>
+  <h5 class="text-bg-secondary p-3">選択中の日時</h5>
+  <div class="p-3"><%= "#{l params[:date].to_date, format: :long} #{l @schedule.start_time, format: :time_only}～#{l @schedule.end_time, format: :time_only}" %></div>
+  <h5 class="text-bg-secondary p-3">選択中の座席</h5>
+  <h2>|. |. |スクリーン|. |. |</h2>
+
+  <div class="d-flex justify-content-center">
+    <table class="table">
+      <thead>
+        <tr>
+          <% (1..5).each do |_| %>
+            <th>|:---:|</th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @sheets.each do |sheet| %>
+          <%= "<tr>".html_safe if sheet.column == 1 %>
+            <% if sheet.reservations.find_by(date: params[:date], schedule_id: params[:schedule_id]).present?%>
+              <td class="table-active"><%= "#{sheet.row}-#{sheet.column}" %></td>
+            <% else %>
+              <td><%= link_to "#{sheet.row}-#{sheet.column}", new_reservation_path(params[:id],params[:schedule_id], date: params[:date], sheet_id: sheet.id) %></td>
+            <% end %>
+          <%= "</tr>".html_safe if sheet.column == 5 %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

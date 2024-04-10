@@ -1,0 +1,32 @@
+<%= form_with(model: reservation) do |form| %>
+  <% if reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+      <ul>
+        <% reservation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h4 class="text-center">選択中の映画</h4>
+  <div class="text-center"><%= @movie.name %></div>
+  <h4 class="text-center">選択中の日付</h4>
+  <div class="text-center"><%= reservation.date %></div>
+  <h4 class="text-center">選択中のschedule_id</h4>
+  <div class="text-center"><%= reservation.schedule_id %></div>
+  <h4 class="text-center">選択中のsheet_id</h4>
+  <div class="text-center"><%= reservation.sheet_id %></div>
+  <div class="actions">
+    <%= form.hidden_field :movie_id, value: @movie.id %>
+    <%= form.hidden_field :schedule_id %>
+    <%= form.hidden_field :sheet_id %>
+    <%= form.hidden_field :date %>
+    <h4 class="text-center"><%= form.label :name %></h4>
+    <div class="text-center"><%= form.text_field :name, required: true, placeholder: '入力して下さい' %></div>
+    <h4 class="text-center"><%= form.label :email %></h4>
+    <div class="text-center"><%= form.email_field :email, required: true, placeholder: '入力して下さい' %></div>
+    <div class="text-center m-2"><%= form.submit '予約を確定する', class: "btn btn-primary" %></div>
+  </div>
+<% end %>
