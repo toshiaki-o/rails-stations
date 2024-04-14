@@ -1,7 +1,7 @@
 <%= form_with(model: [:admin, reservation]) do |form| %>
   <% if reservation.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this admin_reservation from being saved:</h2>
+      <h2><%= t("errors.template.header", model: reservation.model_name.human, count: reservation.errors.count) %></h2>
 
       <ul>
         <% reservation.errors.each do |error| %>
@@ -21,8 +21,12 @@
       <div class="col-10 p-2"><%= form.email_field :email, required: true %></div>
     </div>
     <div class="row m-2">
+      <div class="col-2 p-2"><%= form.label :theater_id %></div>
+      <div class="col-10 p-2"><%= form.select :theater_id, Theater.pluck(:name, :id), required: true %></div>
+    </div>
+    <div class="row m-2">
       <div class="col-2 p-2"><%= form.label :schedule_id %></div>
-      <div class="col-10 p-2"><%= form.text_field :schedule_id, required: true %></div>
+      <div class="col-10 p-2"><%= form.select :schedule_id, schedule_list, required: true %></div>
     </div>
     <div class="row m-2">
       <div class="col-2 p-2"><%= form.label :date %></div>
@@ -30,7 +34,7 @@
     </div>
     <div class="row m-2">
       <div class="col-2 p-2"><%= form.label :sheet_id %></div>
-      <div class="col-10 p-2"><%= form.text_field :sheet_id, required: true %></div>
+      <div class="col-10 p-2"><%= form.select :sheet_id, sheet_list, required: true %></div>
     </div>
     <div class="m-2"><%= form.submit '送信', class: "btn btn-primary btn-sm" %></div>
   </div>

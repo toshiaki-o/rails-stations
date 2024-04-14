@@ -4,7 +4,7 @@ class Admin::ScreensController < ApplicationController
 
   # GET /admin/screens or /admin/screens.json
   def index
-    @screens = Screen.order(:date, :name)
+    @screens = Screen.order(:theater_id, :date, :name)
   end
 
   # GET /admin/screens/new
@@ -49,6 +49,6 @@ class Admin::ScreensController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def admin_screen_params
-    params.require(:screen).permit(:schedule_id, :name, :date)
+    params.require(:screen).permit(:schedule_id, :name, :date, :theater_id)
   end
 end
