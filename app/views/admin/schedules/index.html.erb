@@ -19,8 +19,8 @@
       <tr>
         <td><%= link_to schedule.id, edit_admin_movie_schedule_path(schedule.movie_id, schedule) %></td>
         <td><%= schedule.movie.name %></td>
-        <td><%= schedule.start_time %></td>
-        <td><%= schedule.end_time %></td>
+        <td><%= l schedule.start_time, format: :time_only %></td>
+        <td><%= l schedule.end_time, format: :time_only %></td>
         <td><%= schedule.created_at %></td>
         <td><%= schedule.updated_at %></td>
       </tr>

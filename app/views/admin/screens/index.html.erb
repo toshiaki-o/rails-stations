@@ -5,12 +5,13 @@
 <table class="table">
   <thead>
     <tr>
-      <th class="col-2"><h2>ID</h2></th>
-      <th class="col-2"><h2>スクリーン名</h2></th>
-      <th class="col-2"><h2>映画名</h2></th>
-      <th class="col-2"><h2>日付</h2></th>
-      <th class="col-2"><h2>開始時間</h2></th>
-      <th class="col-2"><h2>終了時間</h2></th>
+      <th class="col-1"><h5>ID</h5></th>
+      <th class="col-2"><h5>劇場名</h5></th>
+      <th class="col-2"><h5>スクリーン名</h5></th>
+      <th class="col-2"><h5>映画名</h5></th>
+      <th class="col-2"><h5>日付</h5></th>
+      <th class="col-1"><h5>開始時間</h5></th>
+      <th class="col-1"><h5>終了時間</h5></th>
     </tr>
   </thead>
 
@@ -18,6 +19,7 @@
     <% @screens.each do |screen| %>
       <tr>
         <td><%= link_to screen.id, edit_admin_screen_path(screen.id) %></td>
+        <td><%= screen.theater&.name %></td>
         <td><%= screen.name %></td>
         <td><%= screen.schedule.movie.name %></td>
         <td><%= screen.date %></td>

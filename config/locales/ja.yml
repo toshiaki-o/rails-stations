@@ -11,6 +11,7 @@ ja:
       schedule: 上映情報
       reservation: 予約情報
       screen: スクリーン情報
+      theater: 劇場
     attributes:
       movie:
         id: ID
@@ -35,6 +36,9 @@ ja:
         name: スクリーン名
         schedule_id: 上映スケジュール
         date: 日付
+        theater_id: 劇場
+      theater:
+        name: 劇場名
   attributes:
     created_at: 登録日時
     updated_at: 更新日時

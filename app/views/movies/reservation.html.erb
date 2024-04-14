@@ -24,7 +24,7 @@
             <% if sheet.reservations.find_by(date: params[:date], schedule_id: params[:schedule_id]).present?%>
               <td class="table-active"><%= "#{sheet.row}-#{sheet.column}" %></td>
             <% else %>
-              <td><%= link_to "#{sheet.row}-#{sheet.column}", new_reservation_path(params[:id],params[:schedule_id], date: params[:date], sheet_id: sheet.id) %></td>
+              <td><%= link_to "#{sheet.row}-#{sheet.column}", new_reservation_path(params[:id], params[:schedule_id], theater_id: params[:theater_id], date: params[:date], sheet_id: sheet.id) %></td>
             <% end %>
           <%= "</tr>".html_safe if sheet.column == 5 %>
         <% end %>

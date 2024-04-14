@@ -12,14 +12,16 @@ class MoviesController < ApplicationController
   end
 
   # GET /movies/1 or /movies/1.json
-  def show
-    @schedules = @movie.schedules
-  end
+  def show; end
 
   def reservation
-    redirect_to movie_path(params[:id]) if params[:schedule_id].blank? || params[:date].blank?
-    @schedule = Schedule.find_by(id: params[:schedule_id])
-    @sheets = Sheet.all
+    if check_required && Screen.find_by(reservation_params)
+      @schedule = Schedule.find_by(id: params[:schedule_id])
+      @sheets = Sheet.all
+    else
+      flash.now[:danger] = "この条件は予約できません。"
+      render :show
+    end
   end
 
   private
@@ -27,5 +29,13 @@ class MoviesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_movie
     @movie = Movie.find(params[:id])
+  end
+
+  def reservation_params
+    params.permit(:theater_id, :schedule_id, :date)
+  end
+
+  def check_required
+    %i[theater_id schedule_id date].all? { |key| params.key?(key) }
   end
 end

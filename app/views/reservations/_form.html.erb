@@ -12,6 +12,8 @@
   <% end %>
   <h4 class="text-center">選択中の映画</h4>
   <div class="text-center"><%= @movie.name %></div>
+  <h4 class="text-center">選択中の劇場</h4>
+  <div class="text-center"><%= Theater.find(reservation.theater_id).name %></div>
   <h4 class="text-center">選択中の日付</h4>
   <div class="text-center"><%= reservation.date %></div>
   <h4 class="text-center">選択中のschedule_id</h4>
@@ -20,9 +22,10 @@
   <div class="text-center"><%= reservation.sheet_id %></div>
   <div class="actions">
     <%= form.hidden_field :movie_id, value: @movie.id %>
+    <%= form.hidden_field :theater_id %>
+    <%= form.hidden_field :date %>
     <%= form.hidden_field :schedule_id %>
     <%= form.hidden_field :sheet_id %>
-    <%= form.hidden_field :date %>
     <h4 class="text-center"><%= form.label :name %></h4>
     <div class="text-center"><%= form.text_field :name, required: true, placeholder: '入力して下さい' %></div>
     <h4 class="text-center"><%= form.label :email %></h4>

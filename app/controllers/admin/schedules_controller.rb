@@ -4,7 +4,7 @@ class Admin::SchedulesController < ApplicationController
 
   # GET /admin/schedules or /admin/schedules.json
   def index
-    @schedules = Schedule.all
+    @schedules = Schedule.order(:movie_id, :start_time)
   end
 
   # GET /admin/schedules/1 or /admin/schedules/1.json

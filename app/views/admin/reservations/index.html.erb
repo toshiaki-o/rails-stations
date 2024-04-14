@@ -7,7 +7,7 @@
     <tr>
       <th>ID</th>
       <th>映画タイトル</th>
-      <th>sheet_id</th>
+      <th>座席番号</th>
       <th>日時</th>
       <th>名前</th>
       <th>メールアドレス</th>
@@ -21,7 +21,7 @@
       <tr>
         <td><%= link_to reservation.id, edit_admin_reservation_path(reservation.id) %></td>
         <td><%= reservation.schedule.movie.name %></td>
-        <td><%= reservation.sheet_id %></td>
+        <td><%= sheet_number(reservation.sheet_id) %></td>
         <td><%= reservation.date %></td>
         <td><%= reservation.name %></td>
         <td><%= reservation.email %></td>
