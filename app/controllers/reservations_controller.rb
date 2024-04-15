@@ -12,6 +12,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
 
     if @reservation.save
+      ReservationMailer.with(reservation: @reservation).complete.deliver_later
       redirect_to movie_path(params[:reservation][:movie_id]), flash: { info: "予約が完了しました。" }
     else
       redirect_to reservation_movie_path(params[:reservation][:movie_id],

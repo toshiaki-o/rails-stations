@@ -1,0 +1,28 @@
+<h1>
+  予約完了のお知らせ。
+</h1>
+<p>
+  <%= @reservation.name %>様、この度はご予約ありがとうございます。
+</p>
+<p>
+  ご予約いただいた内容は以下になります。
+</p>
+<p>
+  ■劇場名■
+</p>
+<p>
+  <%= Theater.find(@reservation.theater_id).name %>
+</p>
+<p>
+  ■映画名■
+</p>
+<p>
+  <%= Movie.find(@reservation.schedule.movie_id).name %>
+</p>
+<p>
+  ■上映時間■
+</p>
+<p>
+  <%= "#{(l @reservation.schedule.start_time, format: :time_only)}～#{(l @reservation.schedule.end_time, format: :time_only)}" %>
+</p>
+

@@ -25,5 +25,9 @@ Rails.application.routes.draw do
 
   resources :reservations, only: [:create]
   get '/movies/:movie_id/schedules/:schedule_id/reservations/new', to: 'reservations#new', as: 'new_reservation'
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
