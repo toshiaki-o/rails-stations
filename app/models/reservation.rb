@@ -9,7 +9,7 @@ class Reservation < ApplicationRecord
     validates :name
     validates :email
   end
-  validates :schedule_id, uniqueness: { scope: [:sheet_id, :date] }
+  validates :schedule_id, uniqueness: { scope: [:theater_id, :sheet_id, :date] }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validate :check_screen_settings
 

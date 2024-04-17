@@ -18,6 +18,7 @@ class MoviesController < ApplicationController
     if check_required && Screen.find_by(reservation_params)
       @schedule = Schedule.find_by(id: params[:schedule_id])
       @sheets = Sheet.all
+      @reserved_sheets = Reservation.where(reservation_params).pluck(:sheet_id)
     else
       flash.now[:danger] = "この条件は予約できません。"
       render :show

@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% flash.each do |key, value| %>
+  <%= content_tag(:p, value, class: "alert alert-#{key}") %>
+<% end %>
 <div class="container text-center">
   <h1 class="text-bg-secondary p-3">座席の選択</h1>
   <h5 class="text-bg-secondary p-3">選択中の映画</h5>
@@ -21,7 +23,7 @@
       <tbody>
         <% @sheets.each do |sheet| %>
           <%= "<tr>".html_safe if sheet.column == 1 %>
-            <% if sheet.reservations.find_by(date: params[:date], schedule_id: params[:schedule_id]).present?%>
+            <% if @reserved_sheets.include?(sheet.id) %>
               <td class="table-active"><%= "#{sheet.row}-#{sheet.column}" %></td>
             <% else %>
               <td><%= link_to "#{sheet.row}-#{sheet.column}", new_reservation_path(params[:id], params[:schedule_id], theater_id: params[:theater_id], date: params[:date], sheet_id: sheet.id) %></td>
