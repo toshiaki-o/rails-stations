@@ -1,0 +1,17 @@
+<div class="row m-2 justify-content-center text-center">
+  <h1>最新の人気ランキング</h1>
+  <table class="table table-striped m-2">
+    <tr>
+      <th><h4>ランク</h4></th>
+      <th><h4>映画名</h4></th>
+      <th><h4>予約件数</h4></th>
+    </tr>
+    <% @ranks.each.with_index(1) do |rank, i| %> 
+      <tr>
+        <td><%= i %>位</td>
+        <td><%= rank.movie.name %></td>
+        <td><%= rank.number_of_reservations %></td> 
+      </tr>
+    <% end %>
+  </table>
+</div>
