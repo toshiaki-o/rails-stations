@@ -12,6 +12,8 @@ module App
     config.load_defaults 6.1
 
     config.i18n.default_locale = :ja
+    config.time_zone = 'Asia/Tokyo'
+    config.active_record.default_timezone = :local
 
     # for rspec
     # Setting it to false will prevent unnecessary test files from being created.
