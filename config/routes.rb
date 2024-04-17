@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'movies#index'
+  root to: 'movies#rank'
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :movies, only: [:index, :show] do
     get :reservation, on: :member
+    get :rank, on: :collection
   end
 
   resources :sheets, only: [:index]
@@ -26,8 +27,6 @@ Rails.application.routes.draw do
   resources :reservations, only: [:create]
   get '/movies/:movie_id/schedules/:schedule_id/reservations/new', to: 'reservations#new', as: 'new_reservation'
 
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

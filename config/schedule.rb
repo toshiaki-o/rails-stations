@@ -16,3 +16,8 @@ set :output, 'log/cron.log'
 every 1.day, at: Time.parse('7pm').utc do
   rake 'remind_mail:reminder'
 end
+
+# 予約ランキングスケジュール
+every 1.day, at: Time.parse('0am').utc do
+  rake 'rank:aggregation'
+end

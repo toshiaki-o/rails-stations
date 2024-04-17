@@ -25,6 +25,10 @@ class MoviesController < ApplicationController
     end
   end
 
+  def rank
+    @ranks = Rank.where(date: Time.current).order(:number).limit(5)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
