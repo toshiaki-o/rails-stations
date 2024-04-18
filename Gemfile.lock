@@ -67,6 +67,9 @@ GEM
     bindex (0.8.1)
     bootsnap (1.7.5)
       msgpack (~> 1.0)
+    bootstrap5-kaminari-views (0.0.1)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
     builder (3.2.4)
     bullet (6.1.4)
       activesupport (>= 3.0.0)
@@ -108,6 +111,18 @@ GEM
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     json (2.7.2)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     language_server-protocol (3.17.0.3)
     launchy (2.5.2)
       addressable (~> 2.8)
@@ -305,6 +320,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
+  bootstrap5-kaminari-views (~> 0.0.1)
   bullet
   byebug
   capybara
@@ -313,6 +329,7 @@ DEPENDENCIES
   devise-i18n-views
   factory_bot_rails
   jbuilder (~> 2.7)
+  kaminari (~> 1.2, >= 1.2.1)
   letter_opener_web
   listen (~> 3.3)
   mysql2 (~> 0.5)

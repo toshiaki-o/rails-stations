@@ -1,10 +1,11 @@
 class Admin::SchedulesController < ApplicationController
   layout "admin"
+  before_action :admin_user!
   before_action :set_admin_schedule, only: %i[show edit update destroy]
 
   # GET /admin/schedules or /admin/schedules.json
   def index
-    @schedules = Schedule.order(:movie_id, :start_time)
+    @schedules = Schedule.includes(:movie).page(params[:page]).per(15).order(:movie_id, :start_time)
   end
 
   # GET /admin/schedules/1 or /admin/schedules/1.json

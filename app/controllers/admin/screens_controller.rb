@@ -1,10 +1,12 @@
 class Admin::ScreensController < ApplicationController
   layout "admin"
+  before_action :admin_user!
   before_action :set_admin_screen, only: %i[edit update destroy]
 
   # GET /admin/screens or /admin/screens.json
   def index
-    @screens = Screen.order(:theater_id, :date, :name)
+    @screens = Screen.includes(:theater, { schedule: :movie }).page(params[:page]).per(15).order(:theater_id, :date,
+                                                                                                 :name)
   end
 
   # GET /admin/screens/new

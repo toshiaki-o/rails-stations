@@ -1,10 +1,11 @@
 class Admin::MoviesController < ApplicationController
   layout "admin"
+  before_action :admin_user!
   before_action :set_movie, only: %i[show edit update destroy]
 
   # GET /movies or /movies.json
   def index
-    @movies = Movie.all
+    @movies = Movie.all.page(params[:page]).per(15)
   end
 
   # GET /movies/1 or /movies/1.json

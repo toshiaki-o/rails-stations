@@ -10,10 +10,18 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(_resource)
-    movies_path
+    if current_user.is_admin?
+      admin_movies_path
+    else
+      root_path
+    end
   end
 
   def after_sign_out_path_for(_resource)
     new_user_session_path
+  end
+
+  def admin_user!
+    redirect_to root_url unless current_user.is_admin?
   end
 end
