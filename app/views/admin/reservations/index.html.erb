@@ -21,7 +21,7 @@
       <tr>
         <td><%= link_to reservation.id, edit_admin_reservation_path(reservation.id) %></td>
         <td><%= reservation.schedule.movie.name %></td>
-        <td><%= sheet_number(reservation.sheet_id) %></td>
+        <td><%= @sheet_number[reservation.sheet_id] %></td>
         <td><%= reservation.date %></td>
         <td><%= reservation.name %></td>
         <td><%= reservation.email %></td>
@@ -31,7 +31,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%= paginate @reservations, theme: 'bootstrap-5' %>
 <br>
 
 <%= link_to '予約作成', new_admin_reservation_path %>

@@ -29,5 +29,6 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @movies, theme: 'bootstrap-5' %>
 <br>
 <%= link_to 'New Movie', new_admin_movie_path %>

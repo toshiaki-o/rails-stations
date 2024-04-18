@@ -9,7 +9,7 @@
     <% @ranks.each.with_index(1) do |rank, i| %> 
       <tr>
         <td><%= i %>位</td>
-        <td><%= rank.movie.name %></td>
+        <td><%= link_to rank.movie.name, movie_path(rank.movie_id) %></td>
         <td><%= rank.number_of_reservations %></td> 
       </tr>
     <% end %>

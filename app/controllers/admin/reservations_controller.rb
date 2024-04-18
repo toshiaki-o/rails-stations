@@ -1,10 +1,15 @@
 class Admin::ReservationsController < ApplicationController
   layout "admin"
+  before_action :admin_user!
   before_action :set_reservation, only: %i[show edit update destroy]
 
   # GET /admin/reservations or /admin/reservations.json
   def index
-    @reservations = Reservation.joins({ schedule: :movie }).where(movie: { is_showing: true })
+    @reservations = Reservation.includes(:sheet, { schedule: :movie })
+      .joins({ schedule: :movie })
+      .where(movie: { is_showing: true })
+      .page(params[:page]).per(15)
+    @sheet_number = Sheet.number
   end
 
   # GET /admin/reservations/1 or /admin/reservations/1.json
